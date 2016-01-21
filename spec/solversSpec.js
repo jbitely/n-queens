@@ -4,25 +4,26 @@ describe('solvers', function() {
   describe('findNRooksSolution()', function() {
 
     it('finds a valid solution for n of 1-8', function() {
-      _.range(4, 9).map(function(n) {
+      _.range(1, 9).map(function(n) {
         var solutionBoard = new Board(findNRooksSolution(n));
+        console.log(solutionBoard);
         var numPieces = _.reduce(solutionBoard.rows(), function(memo, row) {
           return memo + _.reduce(row, function(memo, col) {
             return memo + col;
           }, 0);
         }, 0);
-        console.log(solutionBoard);
-        console.log("numPieces =" + numPieces);
-        console.log(solutionBoard.rows());
+        console.log('starting tests');
         expect(solutionBoard.get('n')).to.equal(n);
+        console.log("ran n equal n");
         expect(numPieces).to.equal(n);
+        console.log("ran numpieces equal n");
         expect(solutionBoard.hasAnyRooksConflicts()).to.be.equal(false);
       });
     });
 
   });
 
-  describe('countNRooksSolutions()', function() {
+  xdescribe('countNRooksSolutions()', function() {
 
     it('finds the number of valid solutions for n of 1-8', function() {
       _.range(1, 9).map(function(n) {
@@ -35,7 +36,7 @@ describe('solvers', function() {
 
   });
 
-  describe('findNQueensSolution()', function() {
+  xdescribe('findNQueensSolution()', function() {
 
     it('finds a valid solution for n of 0-7', function() {
       // Skip 2 and 3 because they have no solution.
@@ -68,7 +69,7 @@ describe('solvers', function() {
 
   });
 
-  describe('countNQueensSolutions()', function() {
+  xdescribe('countNQueensSolutions()', function() {
 
     it('finds the number of valid solutions for n of 0-8', function() {
       _.range(0, 9).map(function(n) {

@@ -16,37 +16,41 @@
 window.findNRooksSolution = function(n) {
   // store solution
   var solution = new Board({n:n}); //fixme
-  // start at 0,0
-   //iterate through row checking for conflict
+  // get the board size
   var length = solution.rows().length-1;
-  for(var i=0;i<=length;i++){
-    for(var j=0;j<=length;j++){
-      // if no row conflict iterate though columns looking for conflict
-      if(solution.hasRowConflictAt(i)){
+  var badCols = [];
+  console.log('length is ' + length);
+  // // iterate through n pieces
+  for(var i = 1; i <= n; i++){
+    console.log('working on piece ' + i);
+  //   // find a row without conflicts
+    var goodRow = null;
+    for(var j = 0; j <= length; j++){
+      if(solution.get(j).indexOf(1) === - 1){
+        // store that row
+        goodRowIdx = j;
+        console.log('no conflict row ' + j);
         break;
-
       }
-      else{
-        if(solution.hasColConflictAt(j)){
-          continue;
-        }
-        else{
-          solution.togglePiece(i,j);
-        }
-      }
-        //if no col conflict
-
-          // place rook
-
-          // start looking for spot for next rook at next row
-        // if col conflict
-          // check next column
      }
-     // if row conflict go to next row
+    // find a column in the good row without conflicts
+    for(var k = 0; k <= length; k++){
+      if(badCols.indexOf(k) === -1){
+        // toggle the piece at [goodRow, goodCol]
+        console.log('no conflict col ' + k);
+        solution.togglePiece(goodRowIdx, k);
+        badCols.push(k);
+        break;
+    //       console.log("toggle:" + goodRowIdx + ' ' + k);
+    //       solution.togglePiece(goodRowIdx, k);
+      }
+    }
   }
-
+  //   // if there is no valid placement and we haven't place n pieces
+  //     // this setup is not a solution
+  console.log(solution);
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
-  return solution;
+  return solution.rows();
 };
 
 
