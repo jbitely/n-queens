@@ -15,27 +15,35 @@
 
 window.findNRooksSolution = function(n) {
   // store solution
-  var solution = new Board({n:5}); //fixme
-    // start at 0,0
-    //iterate through row checking for conflict
+  var solution = new Board({n:n}); //fixme
+  // start at 0,0
+   //iterate through row checking for conflict
   var length = solution.rows().length-1;
   for(var i=0;i<=length;i++){
-
-
-      for(var j=0;j<=length;j++){
-        // if no row conflict iterate though columns looking for conflict
-        //if no col conflict
-          // place rook
-
-          solution.togglePiece(i,j);
-          // start looking for spot for next rook at next row
+    for(var j=0;j<=length;j++){
+      // if no row conflict iterate though columns looking for conflict
+      if(solution.hasRowConflictAt(i)){
+        break;
 
       }
+      else{
+        if(solution.hasColConflictAt(j)){
+          continue;
+        }
+        else{
+          solution.togglePiece(i,j);
+        }
+      }
+        //if no col conflict
+
+          // place rook
+
+          // start looking for spot for next rook at next row
         // if col conflict
           // check next column
+     }
+     // if row conflict go to next row
   }
-      // if row conflict go to next row
-  console.log(solution.rows());
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
