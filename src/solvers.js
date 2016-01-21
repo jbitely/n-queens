@@ -33,27 +33,32 @@ window.findNRooksSolution = function(n, row, col) {
         continue;
       }
       solution.togglePiece(j, startCol);
-      console.log(solution.rows());
+      // console.log(solution.rows());
       if(solution.hasRowConflictAt(j)){
-        console.log('had conflict')
+        // console.log('had conflict')
         solution.togglePiece(j,startCol)
       } else{
-        console.log('no conflict')
+        // console.log('no conflict')
         goodRow=j;
         break;
       }
-    }//col
-  //   for(var k=0;k<=length;k++){
-  //     solution.togglePiece(goodRow,k)
-  //     if(solution.hasColConflictAt(k)){
-  //       solution.togglePiece(goodRow,k)
-  //       console.log('row and col',j,k)
-  //     }
+    }
+    //col
 
-  //     else{
-  //       break;
-  //     }
-  //   }
+    for(var k=0;k<=length;k++){
+      console.log('column ' + k);
+      console.log('GOOD ROW = ' + goodRow);
+      solution.togglePiece(goodRow,k);
+      console.log(solution.rows());
+      // if(solution.hasColConflictAt(k)){
+      //   solution.togglePiece(goodRow,k);
+      //   console.log('conflict');
+      // }
+      // else {
+    //     console.log('breaking');
+    //     break;
+    //   }
+    }
   }
   //check rows until we find one with no rook
     //remember that row
