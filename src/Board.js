@@ -160,7 +160,6 @@
       for(var i=0;i<this.rows().length;i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
-
         }
       }
       return false; // fixme
@@ -176,20 +175,18 @@
       var count = 0;
       var bool = false;
       var currentCol = minorDiagonalColumnIndexAtFirstRow;
-      var arrayLength = this.rows().length-1;
+      var arrayLength = this.rows().length;
       for(var i = 0; i <= arrayLength; i++){
-        if(currentCol < 0 || arrayLength < 0){
-          break;
-        }
-        if(this.rows()[i][currentCol] === 1){
+       if(this.rows()[i][currentCol] === 1){
           count++;
         }
         currentCol--;
       }
+
       if(count > 1){
-        bool=true;
+        return true;
       }
-      return bool; // fixme
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
