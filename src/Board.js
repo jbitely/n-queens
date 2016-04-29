@@ -157,7 +157,7 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      for(var i=0;i<this.rows().length;i++){
+      for(var i = 0; i < this.rows().length; i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return true;
         }
@@ -173,30 +173,25 @@
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var count = 0;
-      var bool = false;
-      var currentCol = minorDiagonalColumnIndexAtFirstRow;
-      var arrayLength = this.rows().length;
-      for(var i = 0; i <= arrayLength; i++){
-       if(this.rows()[i][currentCol] === 1){
+      var board = this.rows();
+      var currCol = minorDiagonalColumnIndexAtFirstRow;
+      for(var i = 0; i < board.length; i++){
+        if(board[i][currCol--]){
           count++;
         }
-        currentCol--;
       }
-
-      if(count > 1){
-        return true;
-      }
-      return false;
+      return count > 1;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      for(var i = this.rows().length; i > 0; i--){
+      var board = this.rows();
+      for (var i = 0; i < board.length; i++){
         if(this.hasMinorDiagonalConflictAt(i)){
           return true;
         }
       }
-      return false; // fixme
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
